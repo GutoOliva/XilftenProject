@@ -1,0 +1,18 @@
+- Homepage
+- Login and create account (user and password)
+  - Email
+  - Username
+  - Password
+
+- Movies / Series
+ - Thumb
+ - Title
+ - Description
+ - Category
+ - number of views
+ - Create date
+ - episodes
+  - Videos
+  - Title
+
+- Search Bar
