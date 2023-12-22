@@ -5,6 +5,48 @@
 HomePage Xilften
 {% endblock %}
 
+{% block head %}
+<style>
+    #id_email {
+        width: 100%;
+        color: #000000;
+        padding: 6px 6px;
+    }
+
+    .custom-button {
+        background-color: #e53e3e;
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 100px; 
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .custom-button:hover {
+        background-color: #c53030;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.9); 
+        padding: 20px;
+        border-radius: 20px; 
+        width: 80%; 
+        margin: 0 auto; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <header class="min-h-screen bg-black bg-opacity-75 bg-blend-overlay showcase border-gray-600 border-b-8 flex justify-center items-center bg-no-repeat" style="background-image: url('{% static 'images/background_netflix.jpeg' %}');">
     
@@ -21,22 +63,21 @@ HomePage Xilften
         </h4>
 
         <div class="w-full flex justify-center">
-            <div class="flex justify-center items-center w-11/12 md:w-10/12">
-                <form method="post" class="w-8/12 justify-center">
-                    <div class="flex flex-grow items-stretch">
-                        <input>
-                    <button class="bg-red-600 font-medium md:font-normal flex justify-center items-center py-2 px-3 md:px-0 rounded-br-sm rounded-tr-sm md:text-2xl" type="submit">
-                        <span>
-                            Access
-                        </span>
-                        <ion-icon name="chevron-forward-outline" class="text-2xl"></ion-icon>
-                    </button>
+            <div class="form-container w-11/12 md:w-10/12" style="background: none; padding: 0; border: none;">
+                <form method="post" class="w-full justify-center rounded-md overflow-hidden">
+                    {% csrf_token %}
+                    <div class="flex items-stretch">
+                        {{ form.email }}
+                        <button class="bg-red-600 font-medium md:font-normal flex justify-center items-center py-2 px-3 md:px-0 rounded-md md:text-2xl" type="submit">
+                            <span>
+                                Access
+                            </span>
+                            <ion-icon name="chevron-forward-outline" class="text-2xl"></ion-icon>
+                        </button>
                     </div>
                 </form>
-                </a>
             </div>
         </div>
-
     </div>
 </header>
 

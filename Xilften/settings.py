@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m2kyj^adfxn&g1dr^_+j*@f--*&_hezty^ix0)eft!z-c$-^_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sass_processor',
-    'movie'
+    'movie',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,10 +88,18 @@ DATABASES = {
     }
 }
 
+import os 
+import dj_database_url
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
+AUTH_USER_MODEL = "movie.user"
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -122,6 +133,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -134,3 +147,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'movie:homefilms'  # After login redirect to movies page
+
+LOGIN_URL = 'movie:login'
+
+CRISPY_ALLOWED_TEMPLATES_PACKS = 'bootstrap5'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
