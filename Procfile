@@ -1,1 +1,1 @@
-web python manage.py migrate && gunicorn Xilften.wsgi --log-file -
+web python manage.py migrate && gunicorn Xilften.wsgi --log-file-
