@@ -27,15 +27,31 @@ h1 {
 }
 
 .wrapper {
-  grid-template-columns: repeat(2,100%);
+  grid-template-columns: repeat(2, 100%);
 }
 
-// Remove the arrow for Mobile
+/* Adiciona um estilo base para a imagem */
+.img-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.img-container img {
+  transition: transform $duration ease;
+}
+
+/* Ao passar o mouse, aplica o aumento */
+.img-container:hover img {
+  transform: scale($itemGrow);
+}
+
+// Remove a seta para dispositivos móveis
 @media only screen and (max-width: 600px) {
   a.arrow__btn {
-    display:none;
+    display: none;
   }
 }
+
 </style>
 {% endblock %}
 

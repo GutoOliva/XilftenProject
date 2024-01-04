@@ -13,5 +13,5 @@ urlpatterns = [
     path('logout/', auth_view.LogoutView.as_view(template_name='logout.html') , name='logout'),
     path('editprofile/<int:pk>', ProfilePage.as_view(), name='editprofile'),
     path('createaccount/', CreateAccount.as_view(), name='createaccount'),
-    path('changepassword/', auth_view.PasswordChangeView.as_view(template_name='editprofile.html'), sucess_url=reverse_lazy('movie:homefilms'), name='changepassword'),
+    path('changepassword/', auth_view.PasswordChangeView.as_view(template_name='editprofile.html', success_url=reverse_lazy('movie:homefilms')), name='changepassword'),
 ]
